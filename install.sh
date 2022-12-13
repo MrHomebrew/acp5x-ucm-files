@@ -65,5 +65,5 @@ fi
 
 
 # Done
-printf "%s" "Done."
+printf "%s\n\n" "Done."
 
