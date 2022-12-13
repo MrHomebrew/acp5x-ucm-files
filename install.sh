@@ -4,6 +4,8 @@ src_config_dir="alsa/ucm2/AMD/acp5x/"
 alsa_ucm2_dir="/usr/share/alsa/ucm2/"
 alsa_ucm2_config_dir="/usr/share/alsa/ucm2/conf.d/"
 
+printf "%s\n" "Checking environment..."
+
 # Make sure ucm2 directory exists
 if [ ! -d "${alsa_ucm2_dir}" ]; then
     printf "%s\n" "Directory ${alsa_ucm2_dir} does not exist."
@@ -26,6 +28,7 @@ if [ ! -d "${src_config_dir}" ]; then
 fi
 
 # Create directories
+printf "%s\n" "Creating directories..."
 if ! mkdir -p "${alsa_ucm2_dir}/AMD/acp5x/"; then
     printf "%s\n" "Failed to create directory."
     printf "%s\n" "Aborting."
@@ -39,6 +42,7 @@ if ! mkdir -p "${alsa_ucm2_config_dir}/acp5x/"; then
 fi
 
 # Copy config files into appropriate directory
+printf "%s\n" "Copying files..."
 if ! cp "${src_config_dir}/acp5x.conf" "${alsa_ucm2_dir}/AMD/acp5x/"; then
     printf "%s\n" "Failed to copy file: acp5x.conf."
     printf "%s\n" "Aborting."
@@ -46,24 +50,25 @@ if ! cp "${src_config_dir}/acp5x.conf" "${alsa_ucm2_dir}/AMD/acp5x/"; then
 fi
 
 if ! cp "${src_config_dir}/HiFi.conf" "${alsa_ucm2_dir}/AMD/acp5x/"; then
-    printf "%s\n" "Failed copy file: HiFi.conf"
+    printf "%s\n" "Failed to copy file: HiFi.conf"
     printf "%s\n" "Aborting."
     exit 7
 fi
 
 # Create symlink
+printf "%s\n" "Creating symlink..."
 if ! cd "${alsa_ucm2_config_dir}/acp5x/"; then
-    printf "%s\n" "Failed change directory"
+    printf "%s\n" "Failed to change directory"
     printf "%s\n" "Aborting."
     exit 8
 fi
 
-if ! ln -s "../../AMD/acp5x/acp5x.conf"; then
-    printf "%s\n" "Failed create symlink."
+if ! ln -sf "../../AMD/acp5x/acp5x.conf"; then
+    printf "%s\n" "Failed to create symlink."
+    printf "%s\n" "Aborting."
     exit 9
 fi
 
-
 # Done
-printf "%s\n\n" "Done."
+printf "%s\n" "Success."
 
