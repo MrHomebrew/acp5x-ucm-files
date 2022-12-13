@@ -1,8 +1,8 @@
 #!/bin/sh
 
-local src_config_dir="alsa/ucm2/AMD/acp5x/"
-local alsa_ucm2_dir="/usr/share/alsa/ucm2/"
-local alsa_ucm2_config_dir="/usr/share/alsa/ucm2/conf.d/"
+src_config_dir="alsa/ucm2/AMD/acp5x/"
+alsa_ucm2_dir="/usr/share/alsa/ucm2/"
+alsa_ucm2_config_dir="/usr/share/alsa/ucm2/conf.d/"
 
 # Make sure ucm2 directory exists
 if [ ! -d "${alsa_ucm2_dir}" ]; then
