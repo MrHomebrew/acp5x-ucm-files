@@ -1,6 +1,6 @@
 #!/bin/sh
 
-src_config_dir="alsa/ucm2/AMD/acp5x/"
+src_config_dir="alsa/ucm2/acp5x/"
 alsa_ucm2_dir="/usr/share/alsa/ucm2/"
 alsa_ucm2_config_dir="/usr/share/alsa/ucm2/conf.d/"
 
@@ -29,7 +29,7 @@ fi
 
 # Create directories
 printf "%s\n" "Creating directories..."
-if ! mkdir -p "${alsa_ucm2_dir}/AMD/acp5x/"; then
+if ! mkdir -p "${alsa_ucm2_dir}/acp5x/"; then
     printf "%s\n" "Failed to create directory."
     printf "%s\n" "Aborting."
     exit 4
@@ -43,13 +43,13 @@ fi
 
 # Copy config files into appropriate directory
 printf "%s\n" "Copying files..."
-if ! cp "${src_config_dir}/acp5x.conf" "${alsa_ucm2_dir}/AMD/acp5x/"; then
+if ! cp "${src_config_dir}/acp5x.conf" "${alsa_ucm2_dir}/acp5x/"; then
     printf "%s\n" "Failed to copy file: acp5x.conf."
     printf "%s\n" "Aborting."
     exit 6
 fi
 
-if ! cp "${src_config_dir}/HiFi.conf" "${alsa_ucm2_dir}/AMD/acp5x/"; then
+if ! cp "${src_config_dir}/HiFi.conf" "${alsa_ucm2_dir}/acp5x/"; then
     printf "%s\n" "Failed to copy file: HiFi.conf"
     printf "%s\n" "Aborting."
     exit 7
@@ -63,7 +63,7 @@ if ! cd "${alsa_ucm2_config_dir}/acp5x/"; then
     exit 8
 fi
 
-if ! ln -sf "../../AMD/acp5x/acp5x.conf"; then
+if ! ln -sf "../../acp5x/acp5x.conf"; then
     printf "%s\n" "Failed to create symlink."
     printf "%s\n" "Aborting."
     exit 9
